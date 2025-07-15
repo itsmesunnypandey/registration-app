@@ -37,6 +37,9 @@
                 <option value="">Select State</option>
                 <option *ngFor="let state of states" [value]="state">{{ state }}</option>
             </select>
+            <div *ngIf="contactForm.get('state')?.invalid && contactForm.get('state')?.touched" class="error-message">
+                State is required.
+            </div>
 
             <p>Please provide your email address.<br />All meeting correspondence will be sent via email.</p>
 
