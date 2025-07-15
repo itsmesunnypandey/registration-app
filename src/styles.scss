@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+$light-blue: #2988b5;
+$dark-blue: #1b5875;
+$light-grey: #dedede;
+$dark-grey: #aaaaaa;
+$text-color: #555555;
+
+$validation-dark-red: #a93a44;
+$validation-light-red: #a93a44;
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  background-color: #dedede;
+  font-family: Arial, sans-serif;
+  color: #555555;
+}

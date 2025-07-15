@@ -1,0 +1,24 @@
+<div class="login-page">
+  <div class="login-header-bar">LOGIN</div>
+
+  <div class="login-card">
+    <p>Please enter the case sensitive password from your official invitation.</p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <label for="password">Password:</label>
+      <input type="password" id="password" formControlName="password" class="form-control" [ngClass]="{
+    'invalid-input': (loginForm.get('password')?.invalid && (loginForm.get('password')?.touched || submitted)) || wrongPassword
+  }" />
+      <div class="error-message"
+        *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.touched || submitted)">
+        Password is required.
+      </div>
+      <div class="error-message" *ngIf="!loginForm.get('password')?.invalid && wrongPassword">
+        Incorrect password. Please try again.
+      </div>
+      <div class="btn-wrapper">
+        <button type="submit" class="btn-login">Login</button>
+      </div>
+    </form>
+  </div>
+</div>

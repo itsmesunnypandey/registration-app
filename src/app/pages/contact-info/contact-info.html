@@ -1,0 +1,70 @@
+<div class="contact-page">
+    <div class="login-header-bar">CONTACT INFORMATION</div>
+
+    <div class="step-bar">
+        <div class="step active">
+            <div class="box">1</div>
+            <span>REGISTER</span>
+        </div>
+        <div class="line active"></div>
+        <div class="step active">
+            <div class="box">2</div>
+            <span>SUBMIT INFO</span>
+        </div>
+        <div class="line"></div>
+        <div class="step">
+            <div class="box">3</div>
+            <span>COMPLETE</span>
+        </div>
+    </div>
+
+    <div class="contact-card">
+        <p>Please fill in the following required information.</p>
+
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+            <label>First Name: *</label>
+            <input type="text" formControlName="firstName" class="form-control" [ngClass]="{
+    'invalid-input': (contactForm.get('firstName')?.invalid && (contactForm.get('firstName')?.touched))
+    }" />
+
+            <label>Last Name: *</label>
+            <input type="text" formControlName="lastName" class="form-control" [ngClass]="{
+    'invalid-input': (contactForm.get('lastName')?.invalid && (contactForm.get('lastName')?.touched))
+    }" />
+
+            <label>State: *</label>
+            <select formControlName="state" class="custom-select">
+                <option value="">Select State</option>
+                <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+            </select>
+
+            <p>Please provide your email address.<br />All meeting correspondence will be sent via email.</p>
+
+            <label>Email: *</label>
+            <input type="email" formControlName="email" class="form-control" [ngClass]="{
+    'invalid-input': (contactForm.get('email')?.invalid && (contactForm.get('email')?.touched))
+    }" />
+            <label>Confirm Email: *</label>
+            <input type="email" formControlName="confirmEmail" class="form-control" [ngClass]="{
+         'invalid-input': contactForm.get('confirmEmail')?.invalid &&
+                          (contactForm.get('confirmEmail')?.touched || contactForm.get('confirmEmail')?.dirty) ||
+                          (contactForm.hasError('emailMismatch') &&
+                          (contactForm.get('confirmEmail')?.touched || contactForm.get('confirmEmail')?.dirty))
+       }" />
+
+            <div *ngIf="contactForm.hasError('emailMismatch') &&
+            (contactForm.get('confirmEmail')?.touched || contactForm.get('confirmEmail')?.dirty)"
+                class="error-message">
+                Email and Confirm Email do not match.
+            </div>
+
+
+            <div class="checkbox-group">
+                <input type="checkbox" formControlName="subscribe" />
+                <label>Subscribe to Newsletter</label>
+            </div>
+
+            <button type="submit" class="btn-login">Continue</button>
+        </form>
+    </div>
+</div>
