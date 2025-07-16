@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../../services/UserService';
 import { ContactInfo as ContactInfoModel } from '../../models/contact-info.model';
+import { Router } from '@angular/router';
 
 import { emailMatchValidator } from '../../validators/validators';
 
@@ -17,7 +18,7 @@ export class ContactInfo implements OnInit {
   contactForm!: FormGroup;
   states = ['Alabama', 'California', 'Texas', 'New York', 'Florida'];
 
-  constructor(private fb: FormBuilder, private userService: UserService) { }
+  constructor(private fb: FormBuilder, private userService: UserService, private router : Router) { }
 
   ngOnInit(): void {
     this.contactForm = this.fb.group(
@@ -47,6 +48,7 @@ export class ContactInfo implements OnInit {
     this.userService.createRegistration(contactInfo, key).subscribe({
       next: (response) => {
         console.log('API Response:', response);
+        this.router.navigate(['/success-page']);
       },
       error: (err) => {
         console.error('API Error:', err);
